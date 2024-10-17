@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav><ul><li><form th:action="@{/logout}" method="post"><button type="submit">Logout</button></form></li></ul></nav>
+
+<form th:action="@{/admin/save}" th:object="${user}" method="post">
+    <input type="hidden" th:field="*{id}" >
+   <div>
+    Name:  <input type="text" th:field="*{username}">
+       <div th:if="${error}" th:text="${error}" style="color:red;"></div>
+   </div>
+    <br>
+    <div>
+        Password:<input type="text" th:field="*{password}">
+    </div>
+    <br>
+    <div>
+        Age: <input type="text" th:field="*{age}">
+    </div>
+    <br>
+    <div>
+        Gender: <select th:field="*{gender}" >
+            <option th:each="gen : ${genders}" th:value="${gen}" th:text="${gen}"  ></option>
+        </select>
+    </div>
+    <br>
+    <div>
+        Role: <select th:field="*{roles}">
+        <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
+    </select>
+
+    </div>
+    <div>
+        <input type="submit" value="OK">
+    </div>
+
+</form>
+
+
+
+
+</body>
+</html>

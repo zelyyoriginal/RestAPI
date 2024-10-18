@@ -40,7 +40,7 @@ public class defaultUser {
         roleRepo.add(userRole);
         roleRepo.add(adminRole);
 
-        // Теперь создаем пользователей и присваиваем им роли
+
         User user = new User(10, Gender.FEMALE,"user",Set.of(userRole),"user");
         User admin = new User(99, Gender.MALE,"admin",Set.of(adminRole),"admin");
 

@@ -43,15 +43,12 @@ public class AdminController {
     }
     @PostMapping("/save")
     public String save(@ModelAttribute User user, Model model) {
-        // Если это новый пользователь, проверяем, существует ли пользователь с таким именем
         if (user.getId() == null && userService.usernameExists(user.getUsername())) {
             model.addAttribute("error", "Пользователь с таким именем уже существует.");
             model.addAttribute("roles", roleService.getAllRoles());
             model.addAttribute("genders", Gender.values());
             return "admin/edit"; // Вернем на страницу редактирования с ошибкой
         }
-
-        // Если это редактирование существующего пользователя, то просто обновляем его
         userService.add(user);
         return "redirect:/admin";
     }

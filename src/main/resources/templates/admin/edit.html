@@ -30,9 +30,10 @@
     </div>
     <br>
     <div>
-        Role: <select th:field="*{roles}">
+        Role: <select th:field="*{roles} " multiple>
         <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
     </select>
+
 
     </div>
     <div>

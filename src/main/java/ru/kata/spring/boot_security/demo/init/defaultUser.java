@@ -1,6 +1,7 @@
 package ru.kata.spring.boot_security.demo.init;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.model.Gender;
@@ -14,20 +15,20 @@ import ru.kata.spring.boot_security.demo.services.UserServiceImpl;
 
 import javax.annotation.PostConstruct;
 import java.util.Set;
+
 @Component
 public class defaultUser {
 
-  private   UserServiceImpl userRepo;
-  private   RoleServiceImpl roleRepo;
+    private UserServiceImpl userRepo;
+    private RoleServiceImpl roleRepo;
+
 
     @Autowired
     public defaultUser(RoleServiceImpl roleRepo, UserServiceImpl userRepo) {
         this.roleRepo = roleRepo;
         this.userRepo = userRepo;
+
     }
-
-
-
 
 
     @Transactional
@@ -41,10 +42,11 @@ public class defaultUser {
         roleRepo.add(adminRole);
 
 
-        User user = new User(10, Gender.FEMALE,"user",Set.of(userRole),"user");
-        User admin = new User(99, Gender.MALE,"admin",Set.of(adminRole),"admin");
+        User user = new User(10, Gender.FEMALE, "user", Set.of(userRole), "user");
+        User admin = new User(99, Gender.MALE, "admin", Set.of(adminRole), "admin");
 
 
         userRepo.add(user);
         userRepo.add(admin);
-}}
+    }
+}

@@ -23,7 +23,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void add(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        if (user.getId() != null) {//существующий юзер
+            User old = get(user.getId());
+
+            if (user.getPassword().equals(old.getPassword())) {//пароль не менялся
+                user.setPassword(old.getPassword());
+            } else {
+                user.setPassword(passwordEncoder.encode(user.getPassword()));
+            }
+
+
+        } else {
+
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         userRepo.save(user);
     }
 
@@ -38,7 +52,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(String name) {
-        userRepo.delete(userRepo.findByUsername(name));
+        userRepo.delete(userRepo.findByUserEmail(name));
     }
 
     @Override
@@ -53,8 +67,8 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User findByName(String name) {
-        return userRepo.findByUsername(name);
+    public User findByUserEmail(String email) {
+        return userRepo.findByUserEmail(email);
     }
 
     @Override
@@ -64,7 +78,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean usernameExists(String username) {
-        return  userRepo.findByUsername(username) != null;
+
+        return userRepo.findByUserEmail(username) != null;
     }
 
 }

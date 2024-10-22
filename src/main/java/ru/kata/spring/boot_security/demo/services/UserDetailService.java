@@ -22,7 +22,7 @@ public class UserDetailService implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-      User user = userRepo.findByUsername(username);
+      User user = userRepo.findByUserEmail(username);
       if(user == null) {
           throw new UsernameNotFoundException("Такого пользователя не существует");
       }

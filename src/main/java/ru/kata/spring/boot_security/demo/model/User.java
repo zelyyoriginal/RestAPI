@@ -12,11 +12,11 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
+    private String userEmail;
     private String password;
+    private String firstName;
+    private String lastName;
     private int age;
-    @Enumerated(EnumType.STRING)
-    private Gender gender;
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Role> roles;
 
@@ -44,20 +44,38 @@ public class User implements UserDetails {
         this.age = age;
     }
 
-    public Gender getGender() {
-        return gender;
-    }
 
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
 
-    public User(int age,Gender gender,String password, Set<Role> roles, String username) {
+    public User(String userEmail, String password, Set<Role> roles, int age, String firstName, String lastName) {
         this.age = age;
-        this.gender = gender;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.password = password;
         this.roles = roles;
-        this.username = username;
+        this.userEmail = userEmail;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     @Override
@@ -67,7 +85,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return userEmail;
     }
 
     @Override
@@ -93,7 +111,7 @@ public class User implements UserDetails {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.userEmail = username;
     }
 
     @Override

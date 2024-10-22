@@ -11,24 +11,26 @@
 <table border="1" cellpadding="5">
     <tr>
 
-        <th>Name</th>
-        <th>Password</th>
-        <th>Gender</th>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
         <th>Age</th>
+        <th>Email</th>
         <th>Role</th>
+        <th>Action</th>
 
     </tr>
     <tr th:object="${user}" >
-        <td th:text="*{username}"></td>
-        <td th:text="*{password}"></td>
-        <td th:text="*{gender}"></td>
+        <td th:text="*{id}"></td>
+        <td th:text="*{firstName}"></td>
+        <td th:text="*{lastName}"></td>
         <td th:text="*{age}"></td>
+        <td th:text="*{userEmail}"></td>
         <td>
             <ul>
                 <li th:each="rol : *{roles}" th:text="${rol.name}"></li>
             </ul>
         </td>
-
 
 
     </tr>

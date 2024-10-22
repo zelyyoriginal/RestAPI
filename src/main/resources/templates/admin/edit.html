@@ -11,23 +11,27 @@
 <form th:action="@{/admin/save}" th:object="${user}" method="post">
     <input type="hidden" th:field="*{id}" >
    <div>
-    Name:  <input type="text" th:field="*{username}">
-       <div th:if="${error}" th:text="${error}" style="color:#6f44c4;"></div>
+   First name:  <input type="text" th:field="*{firstName}">
    </div>
     <br>
     <div>
-        Password:<input type="text" th:field="*{password}">
+       Last name:<input type="text" th:field="*{lastName}">
     </div>
     <br>
     <div>
         Age: <input type="text" th:field="*{age}">
     </div>
     <br>
+
     <div>
-        Gender: <select th:field="*{gender}" >
-            <option th:each="gen : ${genders}" th:value="${gen}" th:text="${gen}"  ></option>
-        </select>
+        Email:  <input type="text" th:field="*{userEmail}">
+        <div th:if="${error}" th:text="${error}" style="color:#6f44c4;"></div>
     </div>
+    <div>
+        Password:<input type="text" th:field="*{password}">
+    </div>
+    <br>
+
     <br>
     <div>
         Role: <select th:field="*{roles} " multiple>

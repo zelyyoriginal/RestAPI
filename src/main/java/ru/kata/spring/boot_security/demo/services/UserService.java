@@ -15,7 +15,7 @@ public interface UserService {
     public void delete(User user);
     public void delete(Long id);
 
-    public User findByName(String name);
+    public User findByUserEmail(String name);
     public User get(Long id);
     public boolean usernameExists(String username);
 }

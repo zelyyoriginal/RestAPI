@@ -5,7 +5,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.kata.spring.boot_security.demo.model.Gender;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.services.RoleServiceImpl;
 import ru.kata.spring.boot_security.demo.services.UserServiceImpl;
@@ -41,7 +40,6 @@ public class AdminController {
 
         model.addAttribute("user", userService.get(edit));
         model.addAttribute("roles", roleService.getAllRoles());
-        model.addAttribute("genders", Gender.values());
 
         return "admin/edit";
     }
@@ -49,9 +47,8 @@ public class AdminController {
     @PostMapping("/save")
     public String save(@ModelAttribute User user, Model model) {
         if (user.getId() == null && userService.usernameExists(user.getUsername())) {
-            model.addAttribute("error", "Пользователь с таким именем уже существует.");
+            model.addAttribute("error", "Пользователь с такой почтой уже существует.");
             model.addAttribute("roles", roleService.getAllRoles());
-            model.addAttribute("genders", Gender.values());
             return "admin/edit"; // Вернем на страницу редактирования с ошибкой
         }
         userService.add(user);
@@ -62,7 +59,6 @@ public class AdminController {
     public String newUser(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("roles", roleService.getAllRoles());
-        model.addAttribute("genders", Gender.values());
 
         return "admin/edit";
     }

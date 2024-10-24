@@ -14,8 +14,8 @@ public class UserController {
     @GetMapping("")
     public String load(@AuthenticationPrincipal UserDetails userDetails, Model model) {
         User user = (User) userDetails;
-        model.addAttribute("user", user);
-        return "user";
+        model.addAttribute("userDetails", user);
+        return "user_bootstrap5";
     }
 
 }

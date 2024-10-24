@@ -11,4 +11,8 @@ public class LoginController {
     public String login() {
         return "login";
     }
+    @GetMapping("")
+    public String host(){
+        return "redirect:/login";
+    }
 }

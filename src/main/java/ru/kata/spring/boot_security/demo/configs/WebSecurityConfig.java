@@ -39,6 +39,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .successHandler(successUserHandler)
                 .and()
+                .httpBasic()
+                .and()
 
                 .authorizeRequests()
                 .antMatchers("/", "/login").permitAll()
